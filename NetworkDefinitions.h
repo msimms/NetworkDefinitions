@@ -193,6 +193,72 @@ typedef enum ArpType
 	ARP_REPLY   = 2
 } ArpType;
 
+typedef enum DhcpOpCode
+{
+	DHCP_OPCODE_REQUEST = 1,
+	DHCP_OPCODE_REPLY
+} DhcpOpCode;
+
+typedef enum DhcpHardwareType
+{
+	DHCP_HARDWARE_ETHERNET = 1,
+	DHCP_HARDWARE_EXPERIMENTAL_ETHERNET,
+	DHCP_HARDWARE_AMATEUR_RADIO_AX_25,
+	DHCP_HARDWARE_PROTEON_PRONET,
+	DHCP_HARDWARE_CHAOS,
+	DHCP_HARDWARE_IEEE_802,
+	DHCP_HARDWARE_ARCNET,
+	DHCP_HARDWARE_HYPERCHANNEL,
+	DHCP_HARDWARE_LANSTAR,
+	DHCP_HARDWARE_AUTONET_SHORT_ADDRESS,
+	DHCP_HARDWARE_LOCALTALK,
+	DHCP_HARDWARE_LOCALNET,
+	DHCP_HARDWARE_ULTRA_LINK,
+	DHCP_HARDWARE_SMDS,
+	DHCP_HARDWARE_FRAME_RELAY,
+	DHCP_HARDWARE_ATM_1,
+	DHCP_HARDWARE_HDLC,
+	DHCP_HARDWARE_FIBRE_CHANNEL,
+	DHCP_HARDWARE_ATM_2,
+	DHCP_HARDWARE_SERIAL_LINE,
+	DHCP_HARDWARE_ATM_3,
+	DHCP_HARDWARE_MIL_STD_1394_1995,
+	DHCP_HARDWARE_MAPOS,
+	DHCP_HARDWARE_TWINAXIAL,
+	DHCP_HARDWARE_EUI_64,
+	DHCP_HARDWARE_HIPARP,
+	DHCP_HARDWARE_IP_ARP_OVER_ISO_7816_3,
+	DHCP_HARDWARE_ARPSEC,
+	DHCP_HARDWARE_IPSEC_TUNNEL,
+	DHCP_HARDWARE_INFINIBAND,
+	DHCP_HARDWARE_CAI_TIA_102,
+	DHCP_HARDWARE_WIEGAND_INTERFACE,
+	DHCP_HARDWARE_PURE_IP
+} DhcpHardwareType;
+
+typedef enum DhcpV4MessageType
+{
+	DHCP4_MSG_UNKNOWN = 0,
+	DHCP4_MSG_DISCOVER,
+	DHCP4_MSG_OFFER,
+	DHCP4_MSG_REQUEST,
+	DHCP4_MSG_DECLINE,
+	DHCP4_MSG_ACK,
+	DHCP4_MSG_NACK,
+	DHCP4_MSG_RELEASE,
+	DHCP4_MSG_INFORM,
+	DHCP4_MSG_DHCP_FORCE_RENEW,
+	DHCP4_MSG_LEASE_QUERY,
+	DHCP4_MSG_LEASE_UNASSIGNED,
+	DHCP4_MSG_LEASE_UNKNOWN,
+	DHCP4_MSG_LEASE_ACTIVE,
+	DHCP4_MSG_BULK_LEASE_QUERY,
+	DHCP4_MSG_LEASE_QUERY_DONE,
+	DHCP4_MSG_ACTIVE_LEASE_QUERY,
+	DHCP4_MSG_LEASE_QUERY_STATUS,
+	DHCP4_MSG_TLS
+} DhcpV4MessageType;
+
 #pragma pack(push, 1)
 
 typedef struct EthernetHeader
@@ -293,5 +359,46 @@ typedef struct UdpHeader
 	uint16_t length;
 	uint16_t checksum;
 } UdpHeader;
+
+typedef struct NtpTimestamp
+{
+	uint32_t seconds;
+	uint32_t fraction;
+} NtpTimestamp;
+
+typedef struct NtpPacket
+{
+	uint8_t      flags;
+	uint8_t      peerClockStratum;
+	uint8_t      peerPollingInterval;
+	uint8_t      peerClockPrecision;
+	uint32_t     rootDelay;
+	uint32_t     rootDispersion;
+	uint32_t     referenceId;
+	NtpTimestamp referenceTimestamp;
+	NtpTimestamp originTimestamp;
+	NtpTimestamp receiveTimestamp;
+	NtpTimestamp transmitTimestamp;
+} NtpPacket;
+
+typedef struct DhcpHeaderV4
+{
+	uint8_t  opcode;
+	uint8_t  hardwareType;
+	uint8_t  hardwareAddrLen;
+	uint8_t  hopCount;
+	uint32_t transactionId;
+	uint16_t secondsElapsed;
+	uint16_t flags;
+	uint32_t clientIp;
+	uint32_t yourIp;
+	uint32_t nextServerIp;
+	uint32_t relayAgentIp;
+	uint8_t  clientMac[MAC_ADDR_SIZE];
+	uint8_t  padding[10];
+	uint8_t  serverHostName[64];
+	uint8_t  bootFileName[128];
+	uint32_t magicCookie;
+} DhcpHeaderV4;
 
 #pragma pack(pop)
