@@ -22,6 +22,8 @@
 
 #pragma once
 
+#include <stdint.h>
+
 #define MAC_ADDR_SIZE 6
 
 #ifndef LITTLE_ENDIAN
