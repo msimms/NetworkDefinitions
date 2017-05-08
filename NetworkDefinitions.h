@@ -270,6 +270,19 @@ typedef struct EthernetHeader
 	uint16_t etherType;
 } EthernetHeader;
 
+typedef struct EthernetArpPacket
+{
+	uint16_t hardwareType;
+	uint16_t protocolType;
+	uint8_t  hardwareTypeLen;
+	uint8_t  protocolTypeLen;
+	uint16_t operation;
+	uint8_t  senderHardwareAddr[MAC_ADDR_SIZE];
+	uint32_t senderProtocolAddr;
+	uint8_t  targetHardwareAddr[MAC_ADDR_SIZE];
+	uint32_t targetProtocolAddr;
+} EthernetArpPacket;
+
 typedef uint32_t IpV4Addr;
 
 typedef struct IpV6Addr
