@@ -403,4 +403,40 @@ typedef struct DhcpHeaderV4
 	uint32_t magicCookie;
 } DhcpHeaderV4;
 
+typedef struct DhcpHeaderV6
+{
+	uint8_t msgType;
+	uint8_t transactionId[3];
+} DhcpHeaderV6;
+
+typedef struct DhcpOptionV6
+{
+	uint16_t code;
+	uint16_t len;
+} DhcpOptionV6;
+
+typedef struct MdnsHeader
+{
+	uint16_t ident;
+	uint16_t flags;
+	uint16_t questions;
+	uint16_t answerRRs;
+	uint16_t authorityRRs;
+	uint16_t additionalRRs;
+} MdnsHeader;
+
+typedef struct MdnsQueryInfo
+{
+	uint16_t type;
+	uint16_t theClass;
+} MdnsQueryInfo;
+
+typedef struct MdnsAnswerInfo
+{
+	uint16_t type;
+	uint16_t theClass;
+	uint32_t ttl;
+	uint16_t length;
+} MdnsAnswerInfo;
+
 #pragma pack(pop)
