@@ -302,13 +302,7 @@ typedef struct IpAddr
 
 typedef struct IpHeaderV4
 {
-#if LITTLE_ENDIAN
-	uint8_t  version;
-	uint8_t  headerLen;
-#else
-	uint8_t  headerLen;
-	uint8_t  version;
-#endif
+	uint8_t  versionAndHdrLen;
 	uint8_t  dscpAndEcn;
 	uint16_t totalLength;
 	uint16_t identification;
@@ -319,6 +313,14 @@ typedef struct IpHeaderV4
 	uint32_t sourceIp;
 	uint32_t destIp;
 } IpHeaderV4;
+
+#ifdef LITTLE_ENDIAN
+#define IPV4_VERSION(hdr) ((hdr->versionAndHdrLen & 0xF0) >> 4)
+#define IPV4_HDR_LEN(hdr) ((hdr->versionAndHdrLen & 0x0F) * 4)
+#else
+#define IPV4_VERSION(hdr) ((hdr->versionAndHdrLen & 0x0F) * 4)
+#define IPV4_HDR_LEN(hdr) ((hdr->versionAndHdrLen & 0xF0) >> 4)
+#endif
 
 typedef struct IpHeaderV6
 {
