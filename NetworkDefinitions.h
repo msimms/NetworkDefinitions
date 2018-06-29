@@ -235,6 +235,7 @@
 #define PORT_IMAPS 993
 #define PORT_IRCS 994
 #define PORT_POP3S 995
+#define PORT_MDNS 5353
 #define PORT_HTTP_ALT 8080
 
 typedef enum EtherType
