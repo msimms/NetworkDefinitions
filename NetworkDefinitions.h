@@ -638,7 +638,7 @@ typedef struct DhcpOptionV6
 	uint16_t len;
 } DhcpOptionV6;
 
-typedef struct MdnsHeader
+typedef struct DnsHeader
 {
 	uint16_t ident;
 	uint16_t flags;
@@ -646,20 +646,24 @@ typedef struct MdnsHeader
 	uint16_t answerRRs;
 	uint16_t authorityRRs;
 	uint16_t additionalRRs;
-} MdnsHeader;
+} DnsHeader;
 
-typedef struct MdnsQueryInfo
+typedef struct DnsQueryInfo
 {
 	uint16_t type;
 	uint16_t theClass;
-} MdnsQueryInfo;
+} DnsQueryInfo;
 
-typedef struct MdnsAnswerInfo
+typedef struct DnsAnswerInfo
 {
 	uint16_t type;
 	uint16_t theClass;
 	uint32_t ttl;
 	uint16_t length;
-} MdnsAnswerInfo;
+} DnsAnswerInfo;
+
+typedef DnsHeader MdnsHeader;
+typedef DnsQueryInfo MdnsQueryInfo;
+typedef DnsAnswerInfo MdnsAnswerInfo;
 
 #pragma pack(pop)
