@@ -238,6 +238,17 @@
 #define PORT_MDNS 5353
 #define PORT_HTTP_ALT 8080
 
+#define TCP_FLAG_RESERVED 0xE00
+#define TCP_FLAG_NONCE 0x100
+#define TCP_FLAG_CWR 0x080
+#define TCP_FLAG_ECH_ECHO 0x040
+#define TCP_FLAG_URGENT 0x020
+#define TCP_FLAG_ACK 0x010
+#define TCP_FLAG_PUSH 0x008
+#define TCP_FLAG_RESET 0x004
+#define TCP_FLAG_SYN 0x002
+#define TCP_FLAG_FIN 0x001
+
 typedef enum EtherType
 {
 	ETHER_UNKNOWN                      = 0x0000,
