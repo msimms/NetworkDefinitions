@@ -1,3 +1,5 @@
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+
 # NetworkDefinitions
 This project provides C language definitions and types that are useful when working with network packets.
 
